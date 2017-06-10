@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--
+            jdbcConnection: 如何连接到一个数据库
+        -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql:///ssm"
+                        userId="root"
+                        password="031209">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--
+            javaModelGenerator: 指定 Javabean 的生成策略
+            targetPackage： 目标包名
+            targetProject:  目标工程下
+        -->
+        <javaModelGenerator targetPackage="com.zxg.ssmcurd.beans"
+                            targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <!--
+            sqlMapGenerator： sql 映射的生成策略
+        -->
+        <sqlMapGenerator targetPackage="mybatis.mapper"
+                         targetProject="./src/main/resources/">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+
+        <!--
+            javaClientGenerator: 指定 mapper 的所在位置
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zxg.ssmcurd.dao"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="employee" domainObjectName="Employee">
+
+        </table>
+        <table tableName="department" domainObjectName="Department">
+
+        </table>
+
+    </context>
+</generatorConfiguration>

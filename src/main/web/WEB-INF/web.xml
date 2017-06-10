@@ -64,7 +64,7 @@
     </filter-mapping>
 
     <!--
-        配置请求转换过滤器，将 post 请求可以转换成 delete 或者 put 
+        配置请求转换过滤器，将 post 请求可以转换成 delete 或者 put
     -->
     <filter>
         <filter-name>hiddenHttpMethodFilter</filter-name>

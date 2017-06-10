@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--
+            2、settings包含很多重要的设置项
+                setting:用来设置每一个设置项
+                name：设置项名
+                value：设置项取值
+            mapUnderscoreToCamelCase: 启用驼峰命名规范
+        -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <!--
+        5、databaseIdProvider：支持多数据库厂商的；
+		 type="DB_VENDOR"：VendorDatabaseIdProvider
+		 	作用就是得到数据库厂商的标识(驱动getDatabaseProductName())，
+		 	mybatis就能根据数据库厂商标识来执行不同的sql;
+		 	MySQL，Oracle，SQL Server,xxxx
+    -->
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="MYSQL" value="mysql"></property>
+        <property name="ORACLE" value="oracle"></property>
+        <property name="SQL SERVER" value="sqlserver"></property>
+    </databaseIdProvider>
+    <mappers>
+
+    </mappers>
+</configuration>
