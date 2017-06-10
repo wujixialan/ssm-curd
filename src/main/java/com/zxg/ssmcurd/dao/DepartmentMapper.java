@@ -4,7 +4,9 @@ import com.zxg.ssmcurd.beans.Department;
 import com.zxg.ssmcurd.beans.DepartmentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface DepartmentMapper {
     long countByExample(DepartmentExample example);
 

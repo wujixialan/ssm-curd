@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/src/main/web/commons/common.jsp"%>
+<%@ include file="/commons/common.jsp"%>
+<jsp:forward page="/emps"></jsp:forward>
 <html>
 <head>
     <title>首页</title>

@@ -4,7 +4,9 @@ import com.zxg.ssmcurd.beans.Employee;
 import com.zxg.ssmcurd.beans.EmployeeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface EmployeeMapper {
     long countByExample(EmployeeExample example);
 

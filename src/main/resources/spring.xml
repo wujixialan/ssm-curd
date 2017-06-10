@@ -40,6 +40,14 @@
         <property name="basePackage" value="com.zxg.ssmcurd.dao"/>
     </bean>
 
+
+    <!--
+        配置可以执行批量的 SQLSession
+    -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
     <!--
         配置事务控制
     -->
@@ -54,8 +62,8 @@
         <!--
             切入点表达式
         -->
-        <aop:pointcut id="txAdvice" expression="execution(* com.zxg.ssmcurd.services..*(..))"></aop:pointcut>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="txAdvice"></aop:advisor>
+        <aop:pointcut id="txPoint" expression="execution(* com.zxg.ssmcurd.services..*(..))"></aop:pointcut>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"></aop:advisor>
     </aop:config>
     <!--
         配置事务增强，事务如何切入

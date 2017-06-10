@@ -83,4 +83,17 @@ public class Employee {
         this.dId = dId;
     }
 
+    public Employee(String empName, String empEmail, String empGender, Department dept) {
+        this.empName = empName;
+        this.empEmail = empEmail;
+        this.empGender = empGender;
+        this.dept = dept;
+    }
+
+    public Employee(String empName, String empEmail, String empGender, Integer dId) {
+        this.empName = empName;
+        this.empEmail = empEmail;
+        this.empGender = empGender;
+        this.dId = dId;
+    }
 }
