@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -74,5 +75,48 @@ public class EmployeeController {
          */
         PageInfo<Employee> pageInfo = new PageInfo<>(employeeList, 5);
         return Message.success().add("pageInfo", pageInfo);
+    }
+
+    /**
+     * 员工的添加
+     * @return
+     */
+    @RequestMapping(value = "/emp", method = RequestMethod.POST)
+    @ResponseBody
+    public Message addEmp(Employee employee, @Param("dId") Integer dId) {
+        employee.setdId(dId);
+        System.out.println("employee = " + employee);
+        employeeService.addEmp(employee);
+        return Message.success();
+    }
+
+    /**
+     * 检验用户名是否可用
+     * @param empName
+     * @return
+     */
+    @RequestMapping("/checkUser")
+    @ResponseBody
+    public Message checkEmpName(@RequestParam("empName") String empName) {
+        /**
+         * 判断用户名是否满足表达式
+         */
+        String regx = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\\u2E80-\\u9FFF]+$){3,8}";
+        boolean matches = empName.matches(regx);
+        if (!matches) {
+            return Message.fail().add("vaMsg", "用户名可以是3-8位中文或者是6-16位字母和数字的组合");
+        }
+
+        /**
+         * 如果成功，才有必要进行数据库校验。
+         */
+        Boolean flag = employeeService.checkEmpName(empName);
+        System.out.println(flag);
+        System.out.println(empName);
+        if (flag) {
+            return Message.success();
+        } else {
+            return Message.fail().add("vaMsg", "用户名不可用");
+        }
     }
 }

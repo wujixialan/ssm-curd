@@ -1,6 +1,7 @@
 package com.zxg.ssmcurd.services.impl;
 
 import com.zxg.ssmcurd.beans.Employee;
+import com.zxg.ssmcurd.beans.EmployeeExample;
 import com.zxg.ssmcurd.dao.EmployeeMapper;
 import com.zxg.ssmcurd.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,21 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAllEmp() {
         return employeeMapper.selectByExampleWithDept(null);
+    }
+
+    @Override
+    public void addEmp(Employee employee) {
+        employeeMapper.insertSelective(employee);
+    }
+
+    @Override
+    public Boolean checkEmpName(String empName) {
+        EmployeeExample employeeExample = new EmployeeExample();
+        EmployeeExample.Criteria criteria = employeeExample.createCriteria();
+        criteria.andEmpNameEqualTo(empName);
+        long count = employeeMapper.countByExample(employeeExample);
+
+        return count == 0;
+
     }
 }
