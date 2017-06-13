@@ -15,4 +15,10 @@ public interface EmployeeService {
     void addEmp(Employee employee);
 
     Boolean checkEmpName(String empName);
+
+    Employee getEmp(Integer id);
+
+    void modifyEmp(Employee employee);
+
+    void deleteEmpById(Integer id);
 }

@@ -37,4 +37,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         return count == 0;
 
     }
+
+    @Override
+    public Employee getEmp(Integer id) {
+        return employeeMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void modifyEmp(Employee employee) {
+        employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    @Override
+    public void deleteEmpById(Integer id) {
+        employeeMapper.deleteByPrimaryKey(id);
+    }
 }
